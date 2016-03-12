@@ -1,0 +1,32 @@
+{
+  "name": "framework",
+  "version": "1.0.0",
+  "description": "'simple framework built as a learning exercise'",
+  "main": "module.js",
+  "directories": {
+    "test": "test"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/fraziermork/framework.git"
+  },
+  "keywords": [
+    "framework"
+  ],
+  "author": "fraziermork",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/fraziermork/framework/issues"
+  },
+  "homepage": "https://github.com/fraziermork/framework#readme",
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "chai-http": "^2.0.1",
+    "gulp": "^3.9.1",
+    "gulp-eslint": "^2.0.0",
+    "gulp-mocha": "^2.2.0"
+  }
+}
