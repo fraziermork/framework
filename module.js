@@ -51,11 +51,17 @@ module.exports = function(){
           if (path.indexOf(':') !== -1){
             break;
           }
-          fs.accessSync('.' + path, (err) => {
-            if(err){
-              fs.mkdirSync('.' + path);
-            }
-          });
+          try {
+            fs.accessSync('.' + path);
+          } catch (err) {
+            fs.mkdirSync('.' + path);
+          }
+          
+          // fs.accessSync('.' + path, (err) => {
+          //   if(err){
+          //     fs.mkdirSync('.' + path);
+          //   }
+          // });
         }
       });
     });
