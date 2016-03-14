@@ -1,7 +1,7 @@
 {
-  "name": "framework",
+  "name": "simplee",
   "version": "1.0.0",
-  "description": "'simple framework built as a learning exercise'",
+  "description": "'simple version of express built as a learning exercise'",
   "main": "module.js",
   "directories": {
     "test": "test"

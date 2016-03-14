@@ -48,13 +48,27 @@ describe('module.js', () => {
       var i = 1;
       request.on('data', (data) => {
         fs.writeFile(__dirname + '/notes/' + i++ + '.json', data, (err) => {
-          response.write('thanks');
           response.end();
           console.log('file written');
           console.log(err);
         });
       });
     });
+    app.setPUT('/notes', (request, response) => {
+      request.on('data', (data) => {
+        fs.writeFile(__dirname + '/notes/1.json', data, (err) => {
+          response.end();
+          console.log('file replaced');
+          console.log(err);
+        });
+      });
+    });
+    app.setDEL('/notes', (request, response) => {
+      response.end();
+      fs.unlinkSync(__dirname + '/notes/1.json');
+      console.log('file deleted');
+    });
+    
     app.listen(3000);
     done();
     
@@ -75,9 +89,6 @@ describe('module.js', () => {
   });
   
   describe('should respond to POST requests', () => {
-  //   it('builds a directory if one doesnt exist', () => {
-  //     
-  //   });
     it('should allow you to post a resource, save it, and give it a new unique name', function(done){
       request('localhost:3000').post('/notes').send({body: 'hello world'}).end((err, response) => {
         expect(err).to.equal(null);
@@ -90,23 +101,34 @@ describe('module.js', () => {
     });
   });
    
-  
-//   
-//   describe('should respond to PUT requests', () => {
-//     it('should allow you to overwrite a resource that was previously saved with new content');
-//     
-//   });
-//   
-//   describe('should respond to DEL requests', () => {
-//     it('should allow you to delete all saved filed');
-//     it('should allow you to delete a specific named file');
-//   });
-//   
-//   describe('should 404 correctly', () => {
-//     it('should 404 on routes that arent defined');
-//     describe('should 404 on routes with invalid parameters', () => {
-//       
-//       
-//     });  
-//   });
+   
+  describe('should respond to PUT requests', () => {
+    it('should allow you to overwrite a resource that was previously saved with new content', (done) => {
+      request('localhost:3000').put('/notes').send({body: 'hello world 2'}).end((err, response) => {
+        expect(err).to.equal(null);
+        expect(response.status).to.equal(200);
+        fs.readFile(__dirname + '/notes/1.json', 'utf8', (err, data) => {
+          expect(data).to.equal(JSON.stringify({body: 'hello world 2'}));
+          done();
+        });
+      });
+    });
+  }); 
+   
+  describe('should respond to DEL requests', () => {
+    // it('should allow you to delete all saved filed');
+    it('should allow you to delete a specific named file', (done) => {
+      request('localhost:3000').del('/notes').end((err, response) => {
+        expect(err).to.equal(null);
+        done();
+        // try{
+        //   fs.readFileSync(__dirname + '/notes/1.json');
+        // } catch (err){
+        //   expect(err).to.not.equal(null);
+        //   done();
+        // }
+      });
+    });
+  });
+
 });
