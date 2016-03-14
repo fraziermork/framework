@@ -36,4 +36,7 @@ app
   })
 
 This app supports specific routes for PUT, GET, and DEL, but not for POST. 
-All post routes save data as JSON files into a directory whose name is the same as the route--if you set a route for '/notes', it will build a notes directory--this doesn't currently support post routes to paths like '/notes/january'
+All post routes save data as JSON files into a directory whose name is the same as the route--if you set a route for '/notes', it will build a notes directory  '/notes/january/week1'
+
+
+app.listen(port) needs to be called after all routes have been defined
