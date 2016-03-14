@@ -1,6 +1,6 @@
 {
   "name": "simplee",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "'simple version of express built as a learning exercise'",
   "main": "module.js",
   "directories": {
