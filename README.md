@@ -2,8 +2,9 @@
 This is a node framework I am building as a learning exercise. I intend to eventually publish it on npm. 
 
 To build an http server with this module, write
-var simpleE = require('simple-express');
-var app = simpleE();
+var simplee = require('simplee');
+var app = simplee();
+
 app.setGET('/', function(request, response){
     //your functionality here
 })

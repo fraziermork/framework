@@ -31,8 +31,8 @@ describe('router.js', () => {
       expect(router.routes.PUT['/']).to.eql(testFunction);
     });
     it('should let you define DEL routes', () => {
-      router.setPOST('/', testFunction);
-      expect(router.routes.POST['/']).to.eql(testFunction);
+      router.setDEL('/', testFunction);
+      expect(router.routes.DELETE['/']).to.eql(testFunction);
     });
   });
 });
